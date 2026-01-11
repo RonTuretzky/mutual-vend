@@ -708,6 +708,94 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Print styles - show all slides on separate pages */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background: white;
+            }
+
+            .slideshow {
+                position: static;
+                overflow: visible;
+            }
+
+            .slide {
+                position: relative !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                page-break-after: always;
+                break-after: page;
+                min-height: 100vh;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                background: var(--cream) !important;
+            }
+
+            .slide:last-child {
+                page-break-after: avoid;
+            }
+
+            .slide.active {
+                position: relative;
+            }
+
+            /* Hide navigation and counter when printing */
+            .nav,
+            .slide-counter,
+            .shape {
+                display: none !important;
+            }
+
+            /* Ensure mermaid diagrams render properly */
+            .mermaid-container {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .mermaid svg {
+                max-width: 100% !important;
+            }
+
+            /* Scale down large diagrams for print */
+            .mermaid-container.large .mermaid svg,
+            .mermaid-container.xlarge .mermaid svg {
+                transform: scale(1) !important;
+                min-height: auto !important;
+            }
+
+            /* QR codes print properly */
+            .qr-item {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            /* Ensure feature cards print properly */
+            .feature-card,
+            .criteria-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            /* Timeline adjustments */
+            .timeline-item::before {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            /* Ensure proper page sizing */
+            @page {
+                size: landscape;
+                margin: 0.5in;
+            }
+        }
     </style>
 </head>
 <body>
