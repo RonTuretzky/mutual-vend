@@ -716,13 +716,20 @@
                 print-color-adjust: exact !important;
             }
 
-            body {
-                background: white;
+            html, body {
+                height: auto !important;
+                overflow: visible !important;
+                background: white !important;
+                margin: 0;
+                padding: 0;
             }
 
             .slideshow {
-                position: static;
-                overflow: visible;
+                position: static !important;
+                width: 100% !important;
+                height: auto !important;
+                overflow: visible !important;
+                display: block !important;
             }
 
             .slide {
@@ -730,21 +737,28 @@
                 opacity: 1 !important;
                 visibility: visible !important;
                 transform: none !important;
-                page-break-after: always;
-                break-after: page;
-                min-height: 100vh;
                 display: flex !important;
                 align-items: center;
                 justify-content: center;
                 background: var(--cream) !important;
+                width: 100% !important;
+                height: 100vh !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
 
             .slide:last-child {
-                page-break-after: avoid;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
             }
 
-            .slide.active {
-                position: relative;
+            .slide-content {
+                max-height: 90vh !important;
+                overflow: hidden !important;
             }
 
             /* Hide navigation and counter when printing */
@@ -758,16 +772,19 @@
             .mermaid-container {
                 box-shadow: none;
                 border: 1px solid #ddd;
+                max-height: 60vh !important;
+                overflow: hidden !important;
             }
 
             .mermaid svg {
                 max-width: 100% !important;
+                max-height: 55vh !important;
             }
 
             /* Scale down large diagrams for print */
             .mermaid-container.large .mermaid svg,
             .mermaid-container.xlarge .mermaid svg {
-                transform: scale(1) !important;
+                transform: scale(0.9) !important;
                 min-height: auto !important;
             }
 
@@ -775,6 +792,11 @@
             .qr-item {
                 box-shadow: none;
                 border: 1px solid #ddd;
+            }
+
+            .qr-item img {
+                width: 100px !important;
+                height: 100px !important;
             }
 
             /* Ensure feature cards print properly */
@@ -785,15 +807,50 @@
             }
 
             /* Timeline adjustments */
+            .timeline {
+                gap: 0.5rem !important;
+            }
+
+            .timeline-item {
+                padding: 0.5rem 0 0.5rem 1.5rem !important;
+            }
+
             .timeline-item::before {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
 
+            /* Omni layout for print */
+            .omni-layout {
+                gap: 1rem !important;
+            }
+
+            .omni-illustration svg {
+                width: 200px !important;
+            }
+
+            .omni-feature {
+                padding: 0.5rem !important;
+            }
+
+            /* Criteria grid for print */
+            .criteria-grid {
+                gap: 1rem !important;
+            }
+
+            .criteria-card {
+                padding: 1rem !important;
+            }
+
+            /* Social QR grid */
+            .social-qr-grid {
+                gap: 1rem !important;
+            }
+
             /* Ensure proper page sizing */
             @page {
                 size: landscape;
-                margin: 0.5in;
+                margin: 0.25in;
             }
         }
     </style>
